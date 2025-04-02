@@ -1,0 +1,67 @@
+/*-- scss:defaults --*/
+$font-family-sans-serif: "Aktiv Grotesk", sans-serif;
+$font-size-root: 16px;
+
+/*-- scss:rules --*/
+h1.title {
+  font-size: 1.6rem;
+}
+
+.masthead {
+  display: flex;
+  border-bottom: 1px solid #cdcdcd;
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+}
+
+.branding {
+  margin-right: 50px;
+}
+
+.course {
+  margin-left: 16px;
+}
+
+
+img.logo {
+  max-width: 200px;
+}
+
+p.class-id {
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-family: "Aktiv Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+p.prof {
+  font-size: 12px;
+}
+
+
+.stargazer table td,
+.stargazer table td,
+.stargazer table th {
+  font-family: "IBM Plex Mono";
+  font-size: 12px;
+  border-bottom: none; 
+  padding: 1px 0 1px 12px;
+}
+
+.stargazer table th {
+  font-weight: 400;
+  border-top: 1px solid #BBB7B4;
+  border-bottom: 1px solid #BBB7B4;
+}
+
+table caption {
+  text-align: left;
+}
+
+.question-callout {
+  color: #C1272D;
+  font-weight: 600;
+  text-transform: uppercase;
+}
