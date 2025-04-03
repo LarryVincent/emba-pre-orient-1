@@ -4,3 +4,6 @@
 .Ruserdata
 
 /.quarto/
+
+# Local Netlify folder
+.netlify
