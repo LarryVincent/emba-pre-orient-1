@@ -168,6 +168,8 @@ shares_outstanding <- constituents |>
 
 ### Stock Performance
 
+This chart below illustrates the historical stock price movements of `Guess? Inc.` over a specified period vs competitors `Gap` and `Levi's` . Stock performance charts help investors and analysts understand how the company's market value has changed over time, reflecting investor sentiment and external market conditions. Key points to observe include trends such as upward or downward movements, volatility, and any significant spikes or drops, which may correspond to company events or broader economic factors.
+
 ```{r}
 prices |> 
   filter(!symbol %in% c("ANF", "URBN")) |> 
@@ -187,6 +189,9 @@ prices |>
   scale_color_manual(values = c("grey80", pal[2], "grey80")) +
   scale_x_date(expand = expansion(mult = c(0,.1))) +
   strip_margins() +
+  theme(
+    plot.margin = margin(t=18, unit = "pt")
+  ) +
   labs(
     x="",
     y="",
@@ -195,6 +200,8 @@ prices |>
 ```
 
 ### EPS
+
+Earnings Per Share (EPS) represents the portion of a company's profit allocated to each outstanding share of common stock. The chart below shows the EPS of Guess? Inc. over time vs selected competitors, indicating the company's profitability on a per-share basis. An increasing EPS trend suggests improving profitability, while a declining trend may raise concerns about financial performance.
 
 ```{r}
 shares_outstanding |> 
@@ -212,6 +219,9 @@ shares_outstanding |>
   scale_y_comma(accuracy = 0.1, prefix = "$", expand = expansion(mult = c(0.1, 0.1))) +
   scale_color_manual(values = c("grey80", pal[2], "grey80")) + 
   strip_margins() +
+  theme(
+    plot.margin = margin(t=18, unit = "pt")
+  ) +
   labs(
     x="Year", y="EPS",
     title = "Earnings Per Share"
@@ -220,6 +230,22 @@ shares_outstanding |>
 
 
 ### Margins
+
+This chart compares three companies—Guess, Levi’s, and Gap—based on how efficiently they make and keep money from their sales:
+
+- The **x-axis** (horizontal) shows **Gross Margin**: how much money is left after paying to make the products (fabric, labor, etc.).  
+  → A higher gross margin means they’re better at keeping costs of production low or charging more for what they sell.
+
+- The **y-axis** (vertical) shows **Profit Margin**: how much money is left after *all* expenses are paid—including things like rent, salaries, advertising, and taxes.  
+  → A higher profit margin means the company is managing its total business operations more efficiently.
+
+Each company is represented as a point on the grid.  
+- If a company is **far to the right**, it has a high gross margin.  
+- If it is **higher on the chart**, it has a high profit margin.  
+- The closer a company is to the **top right**, the more financially efficient it is in both making and keeping money.
+
+This visual helps us see which company has the strongest financial fundamentals—not just in selling goods, but in running the business overall.
+
 
 ```{r}
 combined_statements |> 
@@ -233,7 +259,8 @@ combined_statements |>
   strip_margins() +
   theme(
     axis.text.x = element_text(face = "bold"),
-    axis.text.y = element_text(face = "bold")
+    axis.text.y = element_text(face = "bold"),
+    plot.margin = margin(t=18, unit = "pt")
   ) +
   labs(
     x = "Gross margin", y = "Profit margin",
@@ -246,6 +273,21 @@ combined_statements |>
 ```
 
 ### Profit Margin Trends
+
+The chart below shows how each brand—**Guess, Levi’s, and Gap**—has performed financially over the past four years, focusing on their **Profit Margin** (the percent of revenue they keep after all expenses).
+
+Each line represents a company’s trend over time:
+- A **rising line** means the company is keeping more of its revenue as profit, which suggests better control over costs or stronger sales.
+- A **falling line** means profits are shrinking—possibly due to higher costs, weaker sales, or heavier spending on things like marketing or store operations.
+
+This view helps us see:
+- Which companies are improving their financial health
+- Who may be struggling to turn sales into profit
+- How different strategies may be playing out across time
+
+It’s not just about how much they sell—it’s how much they *keep*.
+
+
 
 ```{r}
 combined_statements |> 
@@ -265,7 +307,8 @@ combined_statements |>
   scale_y_percent() +
   strip_margins() +
   theme(
-    axis.text = element_text(face = "bold")
+    axis.text = element_text(face = "bold"),
+    plot.margin = margin(t=18, unit = "pt")
   ) +
   labs(
     x="Year", y="Profit Margin",
@@ -274,6 +317,24 @@ combined_statements |>
 ```
 
 ### Inventory Turnover
+
+The next chart shows how often each company—**Guess, Levi’s, and Gap**—sells through and replaces its inventory over the course of a year. It’s called **Inventory Turnover**, and it tells us how efficiently a company moves its products.
+
+- A **higher number** means the company sells its products quickly and restocks often.  
+  → This usually signals healthy demand and efficient inventory management.
+
+- A **lower number** suggests the company is sitting on unsold merchandise longer, which can lead to markdowns or write-offs.
+
+Think of it like this:  
+> *If a company has an inventory turnover of 5, it means they sold and replaced their inventory five times in a year—roughly once every 2.5 months.*
+
+This measure helps us assess:
+- How well each brand matches supply with customer demand  
+- Who might be overproducing or struggling with slow-moving stock  
+- Whether the business is tying up too much money in unsold goods
+
+Efficient inventory turnover supports healthier cash flow and can be a competitive advantage in retail.
+
 
 ```{r}
 combined_statements |> 
@@ -289,6 +350,9 @@ combined_statements |>
   geom_text(aes(label = number(g_turn, accuracy = 0.1)), color = "black", size = 5, nudge_y = 0.2, show.legend = FALSE) +
   scale_x_continuous(expand = expansion(mult = c(0.1, 0.15), add = c(0, .2))) +
   scale_color_manual(values = c("grey80", pal[2], "grey80")) + 
+  theme(
+    plot.margin = margin(t=18, unit = "pt")
+  ) +
   labs(
     x="Year", y="Turnover Ratio",
     title = "Inventory Turnover"
